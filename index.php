@@ -9,7 +9,7 @@
 <script src="script.js" charset="utf-8"></script>
     <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+<link rel="stylesheet" href="style.css">
   </head>
   <body>
 
@@ -18,8 +18,18 @@
       <div class="row">
         <div class="col-5">
           <h1>Search Artist on Deezer</h1>
+
+
+        </div>
+        <div class="col-5">
+
+        </div>
+        <div class="col-1">
+
+          <a href="https://github.com/pascalyazid/DeezerArtist" target="_blank">Github: pascalyazid</a>
         </div>
       </div>
+
     </div>
     <div class="container">
       <nav class="navbar navbar-light bg-light">
@@ -30,148 +40,120 @@
                 <input class="form-control mr-sm-2" type="text" placeholder="Artist" name="artist">
               </div>
               <div class="col-1">
-                <input type="submit" name="submit" value="Search" class="btn btn-outline-success my-2 my-sm-0">
+                <input type="submit" name="submit" value="Search" class="btn btn-outline-success my-2 my-sm-0" onclick="printSongs()">
+              </div>
+              <div class="col-1">
               </div>
             </div>
           </div>
         </form>
+
       </nav>
+    </div>
+    <audio id="audio">
+      <source src="default.mp3" type="audio/mpeg">
+    </audio>
+    <div class="position-fixed bottom-0 start-0">
+      <form action="javascript:loadNext()">
+        <div class="container">
+          <div class="row">
+            <div class="col-1">
+              <input type="submit" name="submit" value="load Next 25" class="btn btn-outline-success my-2 my-sm-0">
+            </div>
+            <div class="col-1">
+            </div>
+          </div>
+        </div>
+      </form>
+      </div>
+
     </div>
 
 
-
 <?php
-
+  session_start();
+  $trackCounter = 0;
 //Song object to retrieve the data.
-
-  class Song {
-      public $url;
-      public $total;
-      public $artist;
-      public $json;
-      public $trackCounter;
-
-  // Constructor where the json object is set if an artist is found.
-
-  function __construct($artist) {
-    $this->artist = str_replace(" ", "+", $artist);
-    $this->artist = urlencode($this->artist);
-    $this->trackCounter = 0;
-
-
-
-  }
-  // Getter and Setter.
-
-  function setJSON($json) {
-    $this->json = $json;
-  }
-
-  function setURL($url) {
-    $this->url = $url;
-  }
-
-  function setTotal($total) {
-    $this->total = $total;
-  }
-
-  function setArtist($artist) {
-    $this->artist = $artist;
-  }
-
-  function setTrackCounter($trackCounter) {
-    $this->trackCounter = $trackCounter;
-  }
-
-  function getJSON() {
-    return $this->json;
-  }
-
-  function getTotal() {
-    return $this->total;
-  }
-
-  function getURL() {
-    return $this->url;
-  }
-
-  function getArtist() {
-    return $this->artist;
-  }
-
-  function getTrackCounter() {
-    return $this->trackCounter;
-  }
 
   // Function that prints all the songs with  a hyperlink to the song preview.
 
-  function printSongs() {
-    $this->artist = str_replace(" ", "+", $this->artist);
-    $this->url = "https://api.deezer.com/search?q=artist:\"" . $this->artist . "\"&index=" . $this->trackCounter;
-    $this->json = file_get_contents($this->url);
-    $this->json = json_decode($this->json);
-    $this->total = $this->json->total;
-    if($this->json->total != 0){
+  function printSongs($data, $trackCounter) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $artist = htmlspecialchars($data);
 
-        echo "<div class=\"container\">";
-        echo "<div class=\"row\">";
+    $artist = str_replace(" ", "+", $artist);
+    $url = "https://api.deezer.com/search?q=artist:\"" . $artist . "\"&index=" . $trackCounter;
+    $json = file_get_contents($url);
+    $json = json_decode($json);
+    $total = $json->total;
 
-        if($this->trackCounter < 25){
-            $artistNow = str_replace("+", " ", urldecode($this->artist));
-            echo "<div class=\"col-2\">" . "Results for : " . $artistNow . "</div>";
+    if($json->total != 0){
+      $_SESSION['data'] = $artist;
+        if($trackCounter < 25){
+            $artistNow = str_replace("+", " ", urldecode($artist));
           }
-        echo "</div>" . "</div>";
+        echo "<div class='container'>";
+        echo "<div class='row'>";
+        echo "<div class='col-4'>";
+        echo "</div>";
+        echo "<div class='col'>";
 
-
-        echo "<div class=\"container\">";
-        echo "<table class=\"table table-hover\">";
-        echo "<thead>" . "<tr>" . "<th scope=\"col\"></th><th scope=\"col\"></th>" . "</tr>" . "</thead>";
+        echo "<table class='table'>";
+        echo "<thead><tr><th></th><th></th><th></th></tr></thead>";
         echo "<tbody>";
 
-        foreach ($this->json->data as $key => $value) {
-          $this->trackCounter = $this->trackCounter + 1;
-          echo "<tr>" . "<th scope=\"row\">" . " <img src=\"" . $value->album->cover_small .  "\" alt=\"Album\"> " . "</th>";
-          echo "<th scope=\"row\">" . "<a href=\"" . $value->preview . "\">" . $value->title .  " - " . $value->artist->name .  "</a>" . "</th></tr>";
+        echo "<tr>";
+          echo "<td scope=\"row\">";
+          echo "<div class=\"col-2\">". $artistNow . "</div>";
+          echo "</td>";
+        foreach ($json->data as $key => $value) {
+          //echo $trackCounter;
+
+            echo "<tr>";
+              echo "<td scope=\"row\">";
+                echo"<img src=\"" . $value->album->cover_medium . "\">";
+              echo "</td>";
+
+              echo "<td scope=\"row\"  class='align-middle'>" . $value->artist->name . " - " . $value->title_short . "</td>";
+
+
+              echo "<td scope=\"row\">";
+              echo "<button class='btn btn-info' onclick='setSRC(\"" . $value->preview . "\");'>Play</button>";
+              echo "</td";
+
+            echo "</tr>";
+          $trackCounter = $trackCounter + 1;
+          $_SESSION['counter'] = $trackCounter;
         }
-
-        echo "</tbody></div>";
-
-
+        echo "</tbody></table>";
+        echo "</div>";
+        echo "<div class='col-3'></div>";
+        echo "</div>";
+        echo "</div>";
     }
 
     else {
 
       //When nothing is found by the search parameter, the following message is shown.
 
-      if($this->trackCounter < 25) {
-        $artistNow = str_replace("+", " ", urldecode($this->artist));
+      if($trackCounter < 25) {
+        $artistNow = str_replace("+", " ", urldecode($artist));
         echo "<div class=\"container\">" . "<br> Nothing found by " . $artistNow . "</div>";
       }
     }
-  }
-
-
+    return $trackCounter;
   }
 
 //Takes the Request from the form, creates the song object and lists the songs.
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $artist = test_input($_POST["artist"]);
+      $trackCounter = printSongs($_POST["artist"], $trackCounter);
   }
 
-  function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    $song = new Song($data);
-    $song->printSongs();
 
-
-  }
 
 ?>
-
-
   </body>
 </html>
