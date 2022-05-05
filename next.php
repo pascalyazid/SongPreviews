@@ -1,5 +1,10 @@
 
 <?php
+echo "<div class='container'>";
+echo "<div class='row'>";
+  echo "<div class='col'></div>";
+  echo "<div class='col'>";
+
 session_start();
 $data = $_SESSION['data'];
 $data = stripslashes($data);
@@ -16,15 +21,13 @@ if($json->total != 0){
         $artistNow = str_replace("+", " ", urldecode($artist));
       }
     echo "<div class='container'>";
-    echo "<div class='row'>";
-    echo "<div class='col-4'>";
-    echo "</div>";
-    echo "<div class='col'>";
-
     echo "<table class='table'>";
     echo "<thead><tr><th></th><th></th><th></th></tr></thead>";
     echo "<tbody>";
 
+    echo "<tr>";
+      echo "<td scope=\"row\">";
+      echo "</td>";
     foreach ($json->data as $key => $value) {
       //echo $trackCounter;
 
@@ -36,8 +39,8 @@ if($json->total != 0){
           echo "<td scope=\"row\"  class='align-middle'>" . $value->artist->name . " - " . $value->title_short . "</td>";
 
 
-          echo "<td scope=\"row\">";
-          echo "<button onclick='setSRC(\"" . $value->preview . "\");'>Play</button>";
+          echo "<td scope=\"row\" class='align-middle'>";
+          echo "<button class='btn btn-info align-self-center' onclick='setSRC(\"" . $value->preview . "\");'>Play</button>";
           echo "</td";
 
         echo "</tr>";
@@ -46,7 +49,8 @@ if($json->total != 0){
     }
     echo "</tbody></table>";
     echo "</div>";
-    echo "<div class='col-3'></div>";
+    echo "</div>";
+    echo "<div class='col'>";
     echo "</div>";
     echo "</div>";
 }

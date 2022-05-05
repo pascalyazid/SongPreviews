@@ -1,5 +1,8 @@
+$(document).ready(function() {
+});
+
 function loadNext() {
-  $.get("test.php", function(data){
+  $.get("next.php", function(data){
     document.body.innerHTML = (document.body.innerHTML + data);
   });
 }
