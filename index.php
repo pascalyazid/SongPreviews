@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1, user-scalable=no">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>Deezer Search Artist</title>
     <!-- JavaScript Bundle with Popper -->
@@ -43,16 +44,16 @@
 
           <div class="row">
             <div class="col"></div>
-            <div class="col-4">
+            <div class="col">
 
 
                 <nav class="navbar navbar-light bg-light">
                   <div class="container-fluid">
                     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="d-flex">
                       <div class="container">
-                        <div class="d-flex justify-content-evenly">
+                        <div class="d-flex justify-content-center">
                           <div class="p-2 flex-fill">
-                            <input class="form-control me-2" type="text" placeholder="Artist" name="artist">
+                            <input class="form-control me-5" type="text" placeholder="Artist" name="artist">
                           </div>
                           <div class="p-2 flex-fill">
                             <input type="submit" name="submit" value="Search" class="btn btn-outline-success" onclick="printSongs()">
