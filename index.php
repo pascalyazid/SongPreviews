@@ -53,7 +53,7 @@
                       <div class="container">
                         <div class="d-flex justify-content-center">
                           <div class="p-2 flex-fill">
-                            <input class="form-control me-5" type="text" placeholder="Artist" name="artist">
+                            <input class="form-control me-5" type="text" placeholder="Search" name="artist">
                           </div>
                           <div class="p-2 flex-fill">
                             <input type="submit" name="submit" value="Search" class="btn btn-outline-success" onclick="printSongs()">
