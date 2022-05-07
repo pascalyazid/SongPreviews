@@ -7,15 +7,15 @@
     <title>Song Previews</title>
     <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script src="script.js" charset="utf-8"></script>
+<script src="/js/script.js" charset="utf-8"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<link rel="stylesheet" href="style.css">
-<link rel="icon" href="favicon.svg">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="icon" href="/data/favicon.svg">
   </head>
   <body>
 
         <audio id="audio">
-          <source src="default.mp3" type="audio/mpeg">
+          <source src="/data/default.mp3" type="audio/mpeg">
         </audio>
 
         <div class="position-fixed bottom-0 end-0">
