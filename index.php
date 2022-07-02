@@ -30,6 +30,19 @@
           </form>
         </div>
 
+        <div class="position-fixed bottom-0 start-0">
+            <div class="container">
+              <div class="row">
+                <div class="col-4">
+                  <a href="https://github.com/pascalyazid/SongPreviews/tree/main" target="_blank">
+                  <img src="https://cdn.iconscout.com/icon/free/png-256/github-3215409-2673827.png" alt="githubIcon" width="50" height="50">
+                </a>
+                </div>
+              </div>
+            </div>
+        </div>
+
+
         <div class="container">
 
           <div class="row">
@@ -69,9 +82,8 @@
               <?php
                 session_start();
                 $trackCounter = 0;
-              //Song object to retrieve the data.
 
-                // Function that prints all the songs with  a hyperlink to the song preview.
+              // Function that prints all the songs with  a hyperlink to the song preview.
 
                 function printSongs($data, $trackCounter) {
                   $data = trim($data);
@@ -89,9 +101,8 @@
                       if($trackCounter < 25){
                           $artistNow = str_replace("+", " ", urldecode($artist));
                         }
-
-                      echo "<h1 class='d-flex justify-content-center'>" . $artistNow . "</h1>";
-
+                      echo "<br>";
+                      echo "<h3 class='d-flex justify-content-center'>" . $artistNow . "</h3>";
                       echo "<div class='row'>";
                       echo "<div class='col'></div>";
                       echo "<div class='col'>";
