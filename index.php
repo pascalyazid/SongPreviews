@@ -22,10 +22,8 @@
           <form action="javascript:loadNext()">
             <div class="container">
               <div class="row">
-                <div class="col-1">
-                  <input type="submit" name="submit" value="load Next 25" class="btn btn-outline-success my-2 my-sm-0">
-                </div>
                 <div class="col-4">
+                  <input type="submit" name="submit" value="load Next 25" class="btn btn-outline-success">
                 </div>
               </div>
             </div>
