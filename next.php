@@ -1,4 +1,3 @@
-
 <?php
 echo "<div class='container'>";
 echo "<div class='row'>";
