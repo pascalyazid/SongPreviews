@@ -1,4 +1,8 @@
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(([A-Za-z0-9\-]+/)*[A-Za-z0-9\-]+)?$ $1.php
+# Turn on the rewrite engine
+RewriteEngine  on
+# If the request doesn't end in .php (Case insensitive) continue processing rules
+RewriteCond %{REQUEST_URI} !\.php$ [NC]
+# If the request doesn't end in a slash continue processing the rules
+RewriteCond %{REQUEST_URI} [^/]$
+# Rewrite the request with a .php extension. L means this is the 'Last' rule
+RewriteRule ^(.*)$ $1.php [L]
