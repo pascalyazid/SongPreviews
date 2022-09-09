@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="Pascal Server" remoteFilesAllowedToDisappearOnAutoupload="false" autoUploadExternalChanges="true" showEqualInSync="true" showDifferentInSync="false" showNewOnTargetInSync="false">
+    <serverData>
+      <paths name="Pascal Server">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/SongPreviews" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="SongPreviews">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/var/www/html/SongPreviews" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ON_EXPLICIT_SAVE" />
+  </component>
+</project>
