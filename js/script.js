@@ -1,6 +1,7 @@
 $(document).ready(function() {
   var banner_height = $("#navscroll").height();
   var lastScrollTop = 0;
+  $("#load").hide();
   $(window).scroll(function() {
     var scroll = $(window).scrollTop();
     var currScrollTop = $(this).scrollTop();
@@ -8,6 +9,13 @@ $(document).ready(function() {
       $("#banner").hide();
     } else {
       $("#banner").show();
+    }
+
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    $("#load").show();
+    }
+    else {
+      $("#load").hide();
     }
     lastScrollTop = currScrollTop;
 
@@ -18,6 +26,7 @@ $(document).ready(function() {
 });
 
 function loadNext() {
+  $("#load").hide();
   $.get("next.php", function(data){
     document.body.innerHTML = (document.body.innerHTML + data);
   });

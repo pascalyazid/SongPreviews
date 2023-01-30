@@ -21,7 +21,7 @@
     <source src="/" type="audio/mpeg">
 </audio>
 <div id="dz-root"></div>
-<div class="position-fixed bottom-0 end-0">
+<div  id="load" class="position-fixed bottom-0 end-0" style="display: none;">
     <form action="javascript:loadNext()">
         <div class="container">
             <div class="row">
