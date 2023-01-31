@@ -21,7 +21,7 @@
     <source src="/" type="audio/mpeg">
 </audio>
 <div id="dz-root"></div>
-<div class="position-fixed bottom-0 end-0">
+<div  id="load" class="position-fixed bottom-0 end-0" style="display: none;">
     <form action="javascript:loadNext()">
         <div class="container">
             <div class="row">
@@ -66,14 +66,14 @@
                             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
                                   class="d-flex">
                                 <div class="container">
-                                    <div class="d-flex justify-content-center rounded-pill bg-white">
+                                    <div class="d-flex justify-content-center rounded-pill ">
                                         <div class="p-2 flex-fill" >
                                             <input class="form-control me-5" type="text" placeholder="" name="artist"
                                                    autofocus>
                                         </div>
                                         <div class="p-2 flex-fill">
                                             <input type="submit" name="submit" value="Search"
-                                                   class="btn btn-outline-info" onclick="">
+                                                   class="btn btn-info" onclick="">
                                         </div>
                                     </div>
                                 </div>
