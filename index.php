@@ -66,7 +66,7 @@
                             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
                                   class="d-flex">
                                 <div class="container">
-                                    <div class="d-flex justify-content-center rounded-pill ">
+                                    <div class="d-flex justify-content-center rounded-pill w-100">
                                         <div class="p-2 flex-fill" >
                                             <input class="form-control me-5" type="text" placeholder="" name="artist"
                                                    autofocus>

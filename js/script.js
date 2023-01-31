@@ -11,7 +11,7 @@ $(document).ready(function() {
       $("#banner").show();
     }
 
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
+    if ((window.visualViewport.height + window.scrollY) >= document.body.offsetHeight - 10) {
     $("#load").show();
     }
     else {
