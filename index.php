@@ -160,7 +160,7 @@
                 echo "<div class='row'>";
                 echo "<div class='col'></div>";
                 echo "<div class='col'>";
-                echo "<div class=\"container\">" . "<br> Nothing found by " . $artistNow . "</div>";
+                echo "<div class=\"container\">" . "<br><br><br> Nothing found by " . $artistNow . "</div>";
                 echo "</div>";
                 echo "<div class='col'></div>";
                 echo "</div>";
