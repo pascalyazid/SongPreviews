@@ -54,10 +54,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["artist"])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
 
     <!-- Favicon -->
-    <link rel="icon" href="data/favicon.svg">
+    <link rel="icon" href="./data/favicon.svg">
 </head>
 <body class="bg-light">
 
@@ -101,8 +101,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["artist"])) {
 </div>
 
 <!-- Bootstrap 5.3.3 JS Bundle -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <!-- Custom JS -->
-<script src="js/script.js" charset="utf-8"></script>
+<script src="./js/script.js" charset="utf-8"></script>
 </body>
 </html>
