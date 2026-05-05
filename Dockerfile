@@ -1,11 +1,9 @@
-FROM php:8.2-alpine
+FROM php:8.2-cli-alpine
 
-# Enable Apache mod_rewrite
-RUN a2enmod rewrite
+WORKDIR /app
 
-# Set working directory
-WORKDIR /var/www/html/
+COPY . /app
 
-# Copy the project files to the apache document root and set permissions
-COPY . /var/www/html/
-RUN chown -R www-data:www-data /var/www/html/
+EXPOSE 8000
+
+CMD ["php", "-S", "0.0.0.0:8000", "-t", "."]
