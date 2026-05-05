@@ -1,0 +1,9 @@
+services:
+    web:
+        build: .
+        ports:
+            - "${PORT:-8080}:80"
+        volumes:
+            - .:/var/www/html
+        environment:
+            - PORT=${PORT:-8080}
