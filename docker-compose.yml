@@ -5,7 +5,5 @@ services:
         build: .
         ports:
             - "${PORT:-8080}:8000"
-        volumes:
-            - .:/app
         environment:
             - BASE_URL=${BASE_URL:-/}
