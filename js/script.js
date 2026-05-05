@@ -1,76 +1,79 @@
-$(document).ready(function() {
-  var banner_height = $("#navscroll").height();
-  var lastScrollTop = 0;
-  $("#load").hide();
-  $(window).scroll(function() {
-    var scroll = $(window).scrollTop();
-    var currScrollTop = $(this).scrollTop();
-    if (scroll >= banner_height && currScrollTop > lastScrollTop) {
-      $("#banner").hide();
-    } else {
-      $("#banner").show();
-    }
+document.addEventListener("DOMContentLoaded", function () {
+    const loadBtn = document.getElementById("load");
 
-    if ((window.visualViewport.height + window.scrollY) >= document.body.offsetHeight - 10) {
-    $("#load").show();
-    }
-    else {
-      $("#load").hide();
-    }
-    lastScrollTop = currScrollTop;
+    window.addEventListener("scroll", function () {
+        if (
+            window.innerHeight + window.scrollY >=
+            document.body.offsetHeight - 50
+        ) {
+            if (
+                document
+                    .getElementById("results-container")
+                    .innerHTML.trim() !== ""
+            ) {
+                loadBtn.style.display = "block";
+            }
+        } else {
+            loadBtn.style.display = "none";
+        }
+    });
 
-  });
-  if ( window.history.replaceState ) {
-    window.history.replaceState( null, null, window.location.href );
-  }
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
 });
 
 function loadNext() {
-  $("#load").hide();
-  $.get("next.php", function(data){
-    document.body.innerHTML = (document.body.innerHTML + data);
-  });
+    const loadBtn = document.getElementById("load");
+    loadBtn.style.display = "none";
+
+    fetch("index.php?ajax=true")
+        .then((response) => response.text())
+        .then((data) => {
+            document
+                .getElementById("results-container")
+                .insertAdjacentHTML("beforeend", data);
+        })
+        .catch((error) => console.error("Error loading next:", error));
 }
 
-function setSRC(url) {
-  let audio = document.getElementById('audio');
-  audio.volume = 0.3;
-  let button = document.getElementById(url);
+let currentButton = null;
 
-  if(button.innerHTML == "Play") {
-    if(audio.src != "") {
-      let old = document.getElementById(audio.src);
-      if (old.innerHTML = "Pause") {
-        audio.pause;
-        old.innerHTML = "Play";
-      }
+function setSRC(url, button) {
+    let audio = document.getElementById("audio");
+    audio.volume = 0.3;
+
+    if (button.innerHTML === "Play") {
+        // If another song is playing, reset its button
+        if (currentButton && currentButton !== button) {
+            currentButton.innerHTML = "Play";
+            currentButton.classList.remove("btn-danger");
+            currentButton.classList.add("btn-primary");
+        }
+
+        if (audio.src !== url) {
+            audio.src = url;
+        }
+
+        audio.play();
+        button.innerHTML = "Pause";
+        button.classList.remove("btn-primary");
+        button.classList.add("btn-danger");
+
+        currentButton = button;
+    } else {
+        audio.pause();
+        button.innerHTML = "Play";
+        button.classList.remove("btn-danger");
+        button.classList.add("btn-primary");
+        currentButton = null;
     }
 
-    audio.src = url;
-    audio.play();
-    button.innerHTML = "Pause";
-  }
-
-
-  else if(button.innerHTML =="Pause") {
-    audio.pause();
-    button.innerHTML = "Play";
-  }
-  else {
-
-  }
-
-
-
-}
-
-function initPlayerTest() {
-  DZ.init({
-  appId  : '	540582',
-  channelUrl : 'http://localhost:80/SongPreviews/index.php',
-  player : {
-    onload : function(){
-    }
-  }
-});
+    // Handle audio ending
+    audio.onended = function () {
+        button.innerHTML = "Play";
+        button.classList.remove("btn-danger");
+        button.classList.add("btn-primary");
+        currentButton = null;
+    };
 }
