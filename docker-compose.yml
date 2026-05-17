@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
     web:
+        restart: unless-stopped
         build: .
         ports:
             - "${PORT:-8080}:8000"
